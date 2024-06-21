@@ -6,8 +6,6 @@ using Bulky.Utility;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.CodeAnalysis.FlowAnalysis.DataFlow;
-using System.Collections.Generic;
 using System.Data;
 
 namespace BulkyWeb.Areas.Admin.Controllers
@@ -71,24 +69,24 @@ namespace BulkyWeb.Areas.Admin.Controllers
                     string productPath = Path.Combine(wwwRootPath, @"images\product");
 
                     //Already exist an image url, but ir needs to be updated
-                    if (!string.IsNullOrEmpty(obj.Product.ImageUrl))
-                    {
-                        //delete old image
-                        var oldImagePath = 
-                            Path.Combine(wwwRootPath, obj.Product.ImageUrl.TrimStart('\\'));
+                    //if (!string.IsNullOrEmpty(obj.Product.ImageUrl))
+                    //{
+                    //    //delete old image
+                    //    var oldImagePath = 
+                    //        Path.Combine(wwwRootPath, obj.Product.ImageUrl.TrimStart('\\'));
 
-                        if (System.IO.File.Exists(oldImagePath))
-                        {
-                            System.IO.File.Delete(oldImagePath);
-                        }
-                    }
+                    //    if (System.IO.File.Exists(oldImagePath))
+                    //    {
+                    //        System.IO.File.Delete(oldImagePath);
+                    //    }
+                    //}
 
-                    using (var fileStream = new FileStream(Path.Combine(productPath, fileName), FileMode.Create))
-                    {
-                        file.CopyTo(fileStream);
-                    }
+                    //using (var fileStream = new FileStream(Path.Combine(productPath, fileName), FileMode.Create))
+                    //{
+                    //    file.CopyTo(fileStream);
+                    //}
 
-                    obj.Product.ImageUrl = @"\images\product\" + fileName;
+                    //obj.Product.ImageUrl = @"\images\product\" + fileName;
                 }
 
                 if(obj.Product.Id == 0)
@@ -134,12 +132,12 @@ namespace BulkyWeb.Areas.Admin.Controllers
                 return Json(new { success = false, message = "Error while deleting" });
            }
 
-           var oldImagePath = Path.Combine(_webHostEnvironment.WebRootPath,
-               productToBeDeleted.ImageUrl.TrimStart('\\'));
-           if (System.IO.File.Exists(oldImagePath))
-           {
-                System.IO.File.Delete(oldImagePath);
-           }
+           //var oldImagePath = Path.Combine(_webHostEnvironment.WebRootPath,
+           //    productToBeDeleted.ImageUrl.TrimStart('\\'));
+           //if (System.IO.File.Exists(oldImagePath))
+           //{
+           //     System.IO.File.Delete(oldImagePath);
+           //}
 
             _unitOfWork.Product.Remove(productToBeDeleted);
             _unitOfWork.Save();
