@@ -56,6 +56,6 @@ namespace Bulky.Models
         public Category Category { get; set; }
 
         [ValidateNever]
-        public IEnumerable<ProductImage> ProductImages { get; set; }
+        public List<ProductImage> ProductImages { get; set; }
     }
 }
